@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DOOM PAGE 2</title>
+</head>
+<body style="padding-left: 10%;padding-right: 10%;">
+<h1 style="color: #444">My new evil homepage</h1>
+<p style="color: #444">I am taking inspiration from the greatest villains in the world to build my lair! My old password was puny and weak, this one will never be discovered!</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VibTL36LLUk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    <form id="passwordForm">
+    <input id="passwordInput" type="text" placeholder="password">
+    <p style="padding: 2px" id="passwordLabel"></p>
+</form>
+<script async type="text/javascript" src="index.js"></script>
+<script>
+    const f = document.getElementById("passwordForm");
+    const pl = document.getElementById("passwordLabel");
+    f.addEventListener('submit', e => {
+        e.preventDefault();
+        const {value} = document.getElementById("passwordInput");
+        const result = Module.ccall("verifyPassword", "i32", ["string"], [value]);
+        if (result === 0) {
+            pl.innerText = "Try again!"
+        } else {
+            pl.innerText = "You got in! The flag is the password you just entered."
+        }
+    })
+</script>
+</body>
+</html>
